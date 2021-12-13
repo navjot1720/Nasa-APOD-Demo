@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">NASA APOD</string>
+
+    <string name="txt_nasa">NASA</string>
+    <string name="txt_apod">Astronomy Picture of the Day</string>
+    <string name="txt_select_date">Select Date</string>
+    <string name="txt_to_view_astronomy_pictures">to view more astronomy pictures</string>
+    <string name="txt_remove">Remove from favourites</string>
+    <string name="txt_no_pictures_added_in_favourites">No pictures added in favourites</string>
+    <string name="txt_no_internet_retry">No internet connection\n<u>RETRY</u></string>
+</resources>

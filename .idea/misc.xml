@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-hdpi/drawable_select_date_button.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/drawable_select_date_button.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/ic_calendar.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/ic_cancel.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/shape_image_placeholder.xml" value="0.2625" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2484375" />
+        <entry key="app/src/main/res/layout/fragment_daily_pictures.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/layout/fragment_favourites.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/layout/layout_progressbar.xml" value="0.24461538461538462" />
+        <entry key="app/src/main/res/layout/layout_toolbar.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/layout/list_item_favourites.xml" value="0.24635416666666668" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
