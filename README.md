@@ -16,7 +16,7 @@ Features:
 The application uses Architecture based on MVVM and Repository patterns. Implemented
 Architecture principles follow Google recommended [Guide to app architecture](https://developer.android.com/jetpack/docs/guide).
 
-![Guide to app architecture](guide-to-app-architecture.png "Guide to app architecture")
+![Guide to app architecture](screenshots/architecture_mvvm.jpeg "Guide to app architecture")
 
 This application is written entirely in Kotlin.
 
