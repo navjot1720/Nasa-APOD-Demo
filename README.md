@@ -10,7 +10,9 @@ Features:
 * Support for different screen sizes & orientations
 
 
-Introduction:
+
+# Introduction:
+-------------
 
 The application uses Clean Architecture based on MVVM and Repository patterns. Implemented
 Architecture principles follow Google recommended [Guide to app architecture](https://developer.android.com/jetpack/docs/guide).
@@ -31,7 +33,7 @@ Frescro is used for image loading.
 
 
 
-#APIs used to fetch data: 
+# APIs used to fetch data: 
 
 https://api.nasa.gov/
 
