@@ -34,6 +34,9 @@ abstract class BaseFragment<MyDataBinding : ViewDataBinding, MyViewModel : BaseV
     abstract fun setObservers()
 
 
+    /**
+     * observer to handle all apis errors in a place
+     */
     private val errorObserver = Observer<DefaultResponseModel<*>> {
         handleApiErrorResponse(it)
     }
