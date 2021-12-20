@@ -12,14 +12,13 @@ Features:
 
 
 # Introduction:
--------------
 
-The application uses Clean Architecture based on MVVM and Repository patterns. Implemented
+The application uses Architecture based on MVVM and Repository patterns. Implemented
 Architecture principles follow Google recommended [Guide to app architecture](https://developer.android.com/jetpack/docs/guide).
 
 ![Guide to app architecture](guide-to-app-architecture.png "Guide to app architecture")
 
-The application is written entirely in Kotlin.
+This application is written entirely in Kotlin.
 
 Android Jetpack is used as an Architecture glue including but not limited to ViewModel, LiveData,
 Lifecycles, Room and Data Binding.
@@ -30,6 +29,8 @@ Retrofit chaching.
 Kotlin Coroutines manage background threads with simplified code and reducing needs for callbacks.
 
 Frescro is used for image loading.
+
+Lottie animationnis used for graphical animation on splash screen.
 
 
 
