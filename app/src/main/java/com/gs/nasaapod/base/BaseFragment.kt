@@ -1,7 +1,6 @@
 package com.gs.nasaapod.base
 
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +11,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.gs.nasaapod.data.NetworkStatusMessage
+import com.gs.nasaapod.R
+import com.gs.nasaapod.data.ApiStatusCodes
 
 
 abstract class BaseFragment<MyDataBinding : ViewDataBinding, MyViewModel : BaseViewModel> :
-    Fragment(), BaseNavigator {
+    Fragment() {
 
     lateinit var binding: MyDataBinding
     var viewModel: MyViewModel? = null
@@ -27,28 +27,20 @@ abstract class BaseFragment<MyDataBinding : ViewDataBinding, MyViewModel : BaseV
     @LayoutRes
     abstract fun getLayoutId(): Int
 
-    abstract fun getBindingVariable(): Int
-
     abstract fun initViewModel(): MyViewModel?
 
     abstract fun initVariables()
+
     abstract fun setObservers()
 
 
     private val errorObserver = Observer<DefaultResponseModel<*>> {
-        hideProgressBar()
         handleApiErrorResponse(it)
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-        if (activity is BaseActivity<*, *>) {
-            val newConfig = Configuration(resources.configuration)
-            (activity as BaseActivity<*, *>).adjustFontScale(newConfig)
-        }
 
         viewModel = initViewModel()
 
@@ -70,10 +62,6 @@ abstract class BaseFragment<MyDataBinding : ViewDataBinding, MyViewModel : BaseV
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.setVariable(getBindingVariable(), viewModel)
-        binding.executePendingBindings()
-
-        viewModel?.navigator = this
         viewModel?.setErrorObserver(viewLifecycleOwner, errorObserver)
 
         setObservers()
@@ -87,50 +75,38 @@ abstract class BaseFragment<MyDataBinding : ViewDataBinding, MyViewModel : BaseV
      */
     @CallSuper
     protected open fun handleApiErrorResponse(responseModel: DefaultResponseModel<*>?) {
-        val message = responseModel?.msg ?: NetworkStatusMessage.NETWORK_ERROR.message
-        showToast(message)
+        when (responseModel?.code) {
+            ApiStatusCodes.TIMEOUT_ERROR -> {
+                // Error message handled in view
+            }
+            ApiStatusCodes.CONNECTION_ERROR -> {
+                showToast(getString(R.string.txt_something_went_wrong))
+            }
+            else -> {
+                val message = responseModel?.msg ?: getString(R.string.txt_something_went_wrong)
+                showToast(message)
+            }
+        }
     }
 
 
-    fun isFragmentAdded(): Boolean {
+    protected fun isFragmentAdded(): Boolean {
         return (!requireActivity().isFinishing && !requireActivity().isDestroyed && isAdded)
     }
 
 
-    override fun showProgressBar() {
-        if (requireActivity() is BaseActivity<*, *>) {
-            (requireActivity() as BaseActivity<*, *>).showProgressBar()
-        }
-    }
-
-    override fun hideProgressBar() {
-        if (requireActivity() is BaseActivity<*, *>) {
-            (requireActivity() as BaseActivity<*, *>).hideProgressBar()
-        }
-    }
-
-    override fun showToast(msg: String?) {
+    protected fun showToast(msg: String?) {
         if (requireActivity() is BaseActivity<*, *>) {
             (requireActivity() as BaseActivity<*, *>).showToast(msg)
         }
     }
 
 
-    override fun isNetworkAvailable(): Boolean {
+    protected fun isNetworkAvailable(): Boolean {
         if (requireActivity() is BaseActivity<*, *>) {
             return (requireActivity() as BaseActivity<*, *>).isNetworkAvailable()
         }
         return false
-    }
-
-    override fun showNoNetworkError() {
-        if (requireActivity() is BaseActivity<*, *>) {
-            (requireActivity() as BaseActivity<*, *>).showNoNetworkError()
-        }
-    }
-
-    override fun goBack() {
-        requireActivity().onBackPressed()
     }
 
 }

@@ -12,8 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.NASAAPOD">
         <activity
+            android:name=".ui.details.PictureDetailActivity"
+            android:exported="false"/>
+        <activity
             android:name=".ui.main.MainActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".ui.splash.SplashActivity"
             android:theme="@style/SplashStyle"

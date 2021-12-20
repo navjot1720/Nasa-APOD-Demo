@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFFFF</color>
+    <color name="colorPrimaryVariant">#FFBEBEBE</color>
+    <color name="colorOnPrimary">#FFBEBEBE</color>
+
+    <color name="colorSecondary">#FF121926</color>
+    <color name="colorSecondaryVariant">#FF1B2635</color>
+    <color name="colorOnSecondary">#FF1B2635</color>
+
+    <color name="colorTitle">#FFFFFFFF</color>
+    <color name="colorSubTitle">#FFBEBEBE</color>
+
+    <color name="colorWhite">#FFFFFFFF</color>
+    <color name="colorBlack">#FF000000</color>
+    <color name="colorBlue">#FF0091EA</color>
+</resources>

@@ -4,14 +4,17 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.gs.nasaapod.BR
 import com.gs.nasaapod.data.database.entities.FavouritePicturesEntity
 import com.gs.nasaapod.databinding.ListItemFavouritesBinding
-import com.gs.nasaapod.utils.AppUtils
+import com.gs.nasaapod.interfaces.FavouriteItemClickListener
 
 
-class FavouritesListAdapter(val favouriteList: ArrayList<FavouritePicturesEntity>,
-    val clickListener : (Int) -> Unit
-) : RecyclerView.Adapter<FavouritesListAdapter.ItemViewHolder>() {
+class FavouritesListAdapter(
+    private val favouriteList: ArrayList<FavouritePicturesEntity>,
+    val clickCallBack  : (String) -> Unit,
+    val removeCallBack  : (FavouritePicturesEntity?) -> Unit
+) : RecyclerView.Adapter<FavouritesListAdapter.ItemViewHolder>(), FavouriteItemClickListener {
 
     private var context: Context? = null
 
@@ -24,7 +27,7 @@ class FavouritesListAdapter(val favouriteList: ArrayList<FavouritePicturesEntity
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.bind(position)
+        holder.bind(favouriteList[position])
     }
 
     override fun getItemCount() = favouriteList.size
@@ -33,20 +36,24 @@ class FavouritesListAdapter(val favouriteList: ArrayList<FavouritePicturesEntity
     inner class ItemViewHolder(private val itemBinding: ListItemFavouritesBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
         init {
-            itemBinding.atvRemove.setOnClickListener {
-                clickListener.invoke(adapterPosition)
-            }
+            itemBinding.clickListener = this@FavouritesListAdapter
         }
 
-        fun bind(position: Int) {
-            favouriteList[position].let {
-                itemBinding.sdvImage.setImageURI(it.url)
-
-                itemBinding.atvTitle.text = it.title
-                itemBinding.atvDate.text = AppUtils.parseDateTimeFormat(it.date)
-                itemBinding.atvExplanation.text = it.explanation
-            }
+        fun bind(favouritePicturesEntity: FavouritePicturesEntity) {
+            itemBinding.setVariable(BR.model, favouritePicturesEntity)
+            itemBinding.executePendingBindings()
         }
+    }
+
+
+    override fun onRemoveFavouriteClicked(model: FavouritePicturesEntity?) {
+        favouriteList.remove(model)
+        notifyItemRemoved(favouriteList.indexOf(model))
+        removeCallBack.invoke(model)
+    }
+
+    override fun onFavouriteItemClicked(date: String?) {
+        clickCallBack.invoke(date!!)
     }
 
 }

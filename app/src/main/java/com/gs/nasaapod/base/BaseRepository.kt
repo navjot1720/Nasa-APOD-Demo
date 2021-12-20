@@ -1,8 +1,6 @@
 package com.gs.nasaapod.base
 
-import com.google.gson.Gson
 import com.gs.nasaapod.data.ApiStatusCodes
-import com.gs.nasaapod.data.NetworkStatusMessage
 import com.gs.nasaapod.data.database.entities.FavouritePicturesEntity
 import com.gs.nasaapod.data.restapi.ResultWrapper
 import kotlinx.coroutines.CoroutineDispatcher
@@ -20,7 +18,7 @@ import java.util.concurrent.TimeoutException
 
 open class BaseRepository {
 
-    suspend fun <T> safeApiCall(
+    suspend fun <T> callApi(
         apiRequestCode: Int, dispatcher: CoroutineDispatcher = Dispatchers.IO, apiCall: suspend () -> T
     ): ResultWrapper<T?> {
         return withContext(dispatcher) {
@@ -34,7 +32,7 @@ open class BaseRepository {
                 } else {
                     val errorResponse = getDefaultErrorObject()
                     errorResponse.apiRequestCode = apiRequestCode
-                    errorResponse.msg = NetworkStatusMessage.NETWORK_ERROR.message
+                    errorResponse.code = ApiStatusCodes.CONNECTION_ERROR
                     ResultWrapper.Error(errorResponse)
                 }
 
@@ -44,14 +42,14 @@ open class BaseRepository {
                     is SocketTimeoutException, is SocketException, is ConnectException, is TimeoutException, is UnknownHostException -> {
                         val errorResponse = getDefaultErrorObject()
                         errorResponse.apiRequestCode = apiRequestCode
-                        errorResponse.msg = NetworkStatusMessage.CONNECTION_ERROR.message
+                        errorResponse.code = ApiStatusCodes.CONNECTION_ERROR
                         ResultWrapper.Error(errorResponse)
                     }
 
                     is HttpException -> {
                         if (throwable.code() == ApiStatusCodes.NOT_FOUND && throwable.response() is Response<*>){
                             var message = throwable.message()
-                            JSONObject(throwable.response()!!.errorBody()?.string()).let { jsonResponse ->
+                            JSONObject(throwable.response()!!.errorBody()!!.string()).let { jsonResponse ->
                                 if (jsonResponse.has("msg")){
                                     message = jsonResponse.getString("msg")
                                 }
@@ -61,11 +59,12 @@ open class BaseRepository {
                             errorResponse.code = throwable.code()
                             errorResponse.msg = message
                             ResultWrapper.Error(errorResponse)
+
                         } else {
                             val errorResponse = getDefaultErrorObject()
                             errorResponse.apiRequestCode = apiRequestCode
                             errorResponse.code = throwable.code()
-                            errorResponse.msg = throwable.message() ?: NetworkStatusMessage.NETWORK_ERROR.message
+                            errorResponse.msg = throwable.message()
                             ResultWrapper.Error(errorResponse)
                         }
                     }
@@ -73,7 +72,7 @@ open class BaseRepository {
                     else -> {
                         val errorResponse = getDefaultErrorObject()
                         errorResponse.apiRequestCode = apiRequestCode
-                        errorResponse.msg = throwable.localizedMessage ?: NetworkStatusMessage.NETWORK_ERROR.message
+                        errorResponse.msg = throwable.localizedMessage
                         ResultWrapper.Error(errorResponse)
                     }
                 }

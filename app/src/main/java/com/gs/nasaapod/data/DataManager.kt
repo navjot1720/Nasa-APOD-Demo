@@ -29,20 +29,24 @@ object DataManager {
      * ========================
      */
 
-     fun getFavourites(): LiveData<List<FavouritePicturesEntity>> {
+    fun getFavourites(): LiveData<List<FavouritePicturesEntity>> {
         return appDatabase.favouritePicturesDao().getCartData()
+    }
+
+    suspend fun getPictureDetailsByDate(date: String): FavouritePicturesEntity {
+        return appDatabase.favouritePicturesDao().getPictureDetailsByDate(date)
     }
 
     suspend fun addToFavourites(entity: FavouritePicturesEntity) {
         appDatabase.favouritePicturesDao().addToFavourites(entity)
     }
 
-    suspend fun removeFromFavourites(compositeId: String) {
-        appDatabase.favouritePicturesDao().removeFromFavourites(compositeId)
+    suspend fun removeFromFavourites(date: String) {
+        appDatabase.favouritePicturesDao().removeFromFavourites(date)
     }
 
-    suspend fun checkIfExists(compositeId: String) : Int{
-        return appDatabase.favouritePicturesDao().checkIfExists(compositeId)
+    suspend fun checkIfExists(date: String): Int {
+        return appDatabase.favouritePicturesDao().checkIfExists(date)
     }
 
 
@@ -52,9 +56,6 @@ object DataManager {
      * ==================
      */
 
-    suspend fun getPictures(params: HashMap<String, String>) = apiService.getPictures(params)
-
-    suspend fun getPicturesByStartEndDates(params: HashMap<String, String>) = apiService.getPicturesByStartEndDates(params)
-
+    suspend fun getAstronomyPictures(params: HashMap<String, String>) = apiService.getAstronomyPictures(params)
 
 }

@@ -10,7 +10,8 @@ open class BaseViewModel : ViewModel() {
 
     val errorLiveData = MutableLiveData<DefaultResponseModel<*>>()
 
-    var navigator: BaseNavigator? = null
+    val loadingLiveData = MutableLiveData<Boolean>()
+
 
     /**
      * [errorObserver] must be attached with [errorLiveData]
@@ -20,9 +21,8 @@ open class BaseViewModel : ViewModel() {
     }
 
 
-    override fun onCleared() {
-        navigator = null
-        super.onCleared()
+    fun setLoading(loading : Boolean){
+        loadingLiveData.value = loading
     }
 
 }

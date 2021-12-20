@@ -7,7 +7,6 @@ import com.facebook.drawee.backends.pipeline.Fresco
 
 class BaseApplication : Application() {
 
-
     companion object {
         lateinit var instance: BaseApplication
         fun applicationContext(): Context {

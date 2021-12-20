@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/colorPrimary"
+        android:background="?attr/colorSecondary"
         tools:context=".ui.main.MainActivity">
 
         <include layout="@layout/layout_toolbar"
             android:id="@+id/rlToolbar"/>
-
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
@@ -20,11 +20,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rlToolbar"
-            app:tabIndicatorColor="?attr/colorSecondaryVariant"
+            app:tabIndicatorColor="@color/colorPrimaryVariant"
             app:tabIndicatorHeight="@dimen/dimen_2dp"
             android:elevation="@dimen/dimen_2dp"
-            android:background="?attr/colorPrimary"
-            app:tabSelectedTextColor="?attr/colorSecondary"
+            android:background="@color/colorSecondary"
+            app:tabSelectedTextColor="@color/colorPrimary"
             app:tabTextColor="?attr/colorSecondaryVariant" />
 
         <androidx.viewpager2.widget.ViewPager2

@@ -61,7 +61,7 @@ object ApiManager {
             override fun intercept(chain: Interceptor.Chain): Response {
                 val requestBuilder = chain.request().newBuilder()
                 if (isNetworkAvailable())
-                    requestBuilder.header("Cache-Control", "public, max-age=" + 2)
+                    requestBuilder.header("Cache-Control", "public, max-age=" + 1)
                 else
                     requestBuilder.removeHeader("Pragma").header("Cache-Control", "public, only-if-cached, max-stale=" + 60 * 60 * 24)
 

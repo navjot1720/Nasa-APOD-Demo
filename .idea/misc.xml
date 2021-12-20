@@ -8,13 +8,14 @@
         <entry key="app/src/main/res/drawable/ic_calendar.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/ic_cancel.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/ic_theme_light_dark.xml" value="0.17222222222222222" />
         <entry key="app/src/main/res/drawable/shape_image_placeholder.xml" value="0.2625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2484375" />
         <entry key="app/src/main/res/layout/fragment_daily_pictures.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/fragment_favourites.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/layout_progressbar.xml" value="0.24461538461538462" />
-        <entry key="app/src/main/res/layout/layout_toolbar.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/layout/layout_toolbar.xml" value="0.375" />
         <entry key="app/src/main/res/layout/list_item_favourites.xml" value="0.24635416666666668" />
       </map>
     </option>

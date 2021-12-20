@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/colorPrimary">
+        android:background="?attr/colorSecondary">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFavourites"
@@ -23,16 +24,12 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/list_item_favourites" />
 
-        <include layout="@layout/layout_progressbar"
-            android:visibility="gone"
-            android:id="@+id/progress"/>
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/atvNoDataFound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16dp"
-            android:textColor="?attr/colorSecondaryVariant"
+            android:textColor="?attr/colorPrimaryVariant"
             android:textSize="@dimen/text_size_14sp"
             app:fontFamily="@font/roboto_bold"
             android:visibility="gone"

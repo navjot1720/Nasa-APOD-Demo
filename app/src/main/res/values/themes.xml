@@ -1,36 +1,36 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="Theme.NASAAPOD" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/colorLight</item>
-        <item name="colorPrimaryVariant">@color/colorLightSecondary</item>
-        <item name="colorOnPrimary">@color/colorLightSecondary</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/colorDark</item>
-        <item name="colorSecondaryVariant">@color/colorDarkSecondary</item>
-        <item name="colorOnSecondary">@color/colorDarkSecondary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorSecondary</item>
         <!-- Customize your theme here. -->
-        <item name="android:navigationBarColor">?attr/colorPrimary</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="fontFamily">@font/roboto_regular</item>
     </style>
 
     <!--    Style for splash screen-->
     <style name="SplashStyle" parent="Theme.NASAAPOD">
-        <item name="android:windowBackground">@color/colorDark</item>
+        <item name="android:windowBackground">?attr/colorSecondary</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="android:statusBarColor">@color/colorDark</item>
-        <item name="android:navigationBarColor">@color/colorDark</item>
+        <item name="android:statusBarColor">?attr/colorSecondary</item>
     </style>
 
     <!--    Style for DatePickerDialog-->
-    <style name="DatePickerTheme" parent="ThemeOverlay.AppCompat.Dialog">
-        <item name="colorAccent">?attr/colorSecondary</item>
-        <item name="colorPrimary">?attr/colorPrimaryVariant</item>
-        <item name="colorPrimaryDark">?attr/colorPrimaryDark</item>
-        <item name="colorControlActivated">?attr/colorSecondary</item>
+    <style name="DatePickerTheme" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="android:colorControlActivated">@color/colorPrimary</item>
     </style>
 
 </resources>

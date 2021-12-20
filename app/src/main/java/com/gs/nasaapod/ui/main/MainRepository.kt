@@ -24,26 +24,26 @@ class MainRepository : BaseRepository() {
     /**
      * method to get picture for today from api
      */
-    suspend fun getPicturesForToday(): ResultWrapper<FavouritePicturesEntity?> {
-        return safeApiCall(ApiRequestCodes.RC_PICTURE_FOR_TODAY) {
+    suspend fun getPictureForToday(): ResultWrapper<FavouritePicturesEntity?> {
+        return callApi(ApiRequestCodes.RC_PICTURE_FOR_TODAY) {
             val params = HashMap<String, String>()
             params["api_key"] = getAPIKey()
 
-            DataManager.getPictures(params)
+            DataManager.getAstronomyPictures(params)
         }
     }
 
 
     /**
-     * method to get picture for single selected day from api
+     * method to get picture for a selected date from api
      */
     suspend fun getPictureByDate(date: String): ResultWrapper<FavouritePicturesEntity?> {
-        return safeApiCall(ApiRequestCodes.RC_PICTURE_BY_DAY) {
+        return callApi(ApiRequestCodes.RC_PICTURE_BY_DAY) {
             val params = HashMap<String, String>()
             params["api_key"] = getAPIKey()
             params["date"] = date
 
-            DataManager.getPictures(params)
+            DataManager.getAstronomyPictures(params)
         }
     }
 
@@ -60,15 +60,15 @@ class MainRepository : BaseRepository() {
     /**
      * method to remove favourites from db
      */
-    suspend fun removeFromFavourites(compositeId: String) {
-        DataManager.removeFromFavourites(compositeId)
+    suspend fun removeFromFavourites(date: String) {
+        DataManager.removeFromFavourites(date)
     }
 
     /**
      * method to check if entity exists in our table
      */
-    suspend fun checkIfExists(compositeId: String): Int {
-        return DataManager.checkIfExists(compositeId)
+    suspend fun checkIfExists(date: String): Int {
+        return DataManager.checkIfExists(date)
     }
 
     /**
@@ -76,6 +76,13 @@ class MainRepository : BaseRepository() {
      */
      fun getFavouritesList(): LiveData<List<FavouritePicturesEntity>> {
         return DataManager.getFavourites()
+    }
+
+    /**
+     * method to get picture details from db by date
+     */
+     suspend fun getPictureDetailsByDate(date:String): FavouritePicturesEntity {
+        return DataManager.getPictureDetailsByDate(date)
     }
 
 }

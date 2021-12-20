@@ -1,19 +1,6 @@
 package com.gs.nasaapod.utils
 
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-
-
-inline fun <reified T : ViewModel> AppCompatActivity.getViewModel(): T {
-    return ViewModelProvider(this).get(T::class.java)
-}
-
-inline fun <reified T : ViewModel> Fragment.getViewModel(): T {
-    return ViewModelProvider(this).get(T::class.java)
-}
 
 
 fun View.visible() {

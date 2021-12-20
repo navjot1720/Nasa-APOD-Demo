@@ -9,10 +9,6 @@ import retrofit2.http.QueryMap
 interface ApiInterface {
 
     @GET(ApiEndPoints.PLANETARY_APOD)
-    suspend fun getPictures(@QueryMap params: HashMap<String, String>): FavouritePicturesEntity
-
-    @GET(ApiEndPoints.PLANETARY_APOD)
-    suspend fun getPicturesByStartEndDates(@QueryMap params: HashMap<String, String>): List<FavouritePicturesEntity>
-
+    suspend fun getAstronomyPictures(@QueryMap params: HashMap<String, String>): FavouritePicturesEntity
 
 }

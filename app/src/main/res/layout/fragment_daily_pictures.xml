@@ -3,9 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.gs.nasaapod.ui.main.MainViewModel" />
+
+    </data>
+
     <FrameLayout
+        android:id="@+id/flMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?attr/colorSecondary">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -16,40 +28,43 @@
                 android:id="@+id/clMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary"
                 android:paddingStart="@dimen/dimen_16dp"
-                android:visibility="invisible"
-                android:paddingEnd="@dimen/dimen_16dp">
+                android:paddingTop="@dimen/dimen_10dp"
+                android:paddingEnd="@dimen/dimen_16dp"
+                android:paddingBottom="@dimen/dimen_16dp"
+                android:visibility="@{viewModel.isDataInitialized ? View.VISIBLE : View.GONE}">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/atvSelectDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_6dp"
+                    android:background="@drawable/drawable_select_date_button"
+                    android:onClick="@{view -> viewModel.onDateSelect()}"
+                    android:paddingStart="@dimen/dimen_6dp"
+                    android:paddingTop="@dimen/dimen_4dp"
+                    android:paddingEnd="@dimen/dimen_6dp"
+                    android:paddingBottom="@dimen/dimen_4dp"
+                    android:text="@string/txt_select_date"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_size_12sp"
-                    android:paddingStart="@dimen/dimen_6dp"
-                    android:paddingEnd="@dimen/dimen_6dp"
-                    android:paddingTop="@dimen/dimen_4dp"
-                    android:paddingBottom="@dimen/dimen_4dp"
-                    android:layout_marginTop="@dimen/dimen_14dp"
-                    android:background="@drawable/drawable_select_date_button"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:text="@string/txt_select_date" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/atvLabelViewMore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="?attr/colorSecondaryVariant"
-                    android:textSize="@dimen/text_size_12sp"
                     android:paddingStart="@dimen/dimen_6dp"
-                    android:paddingEnd="@dimen/dimen_6dp"
                     android:paddingTop="@dimen/dimen_4dp"
+                    android:paddingEnd="@dimen/dimen_6dp"
                     android:paddingBottom="@dimen/dimen_4dp"
+                    android:text="@string/txt_to_view_astronomy_pictures"
+                    android:textColor="?attr/colorPrimaryVariant"
+                    android:textSize="@dimen/text_size_12sp"
                     app:layout_constraintStart_toEndOf="@id/atvSelectDate"
-                    app:layout_constraintTop_toTopOf="@id/atvSelectDate"
-                    android:text="@string/txt_to_view_astronomy_pictures" />
+                    app:layout_constraintTop_toTopOf="@id/atvSelectDate" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -57,18 +72,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_10dp"
-                    android:textColor="?attr/colorSecondaryVariant"
+                    android:text="@{viewModel.apodLiveData.getParsedDate()}"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="@dimen/text_size_12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/atvSelectDate"
                     tools:text="12 Dec, 2021" />
+
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/atvTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_4dp"
-                    android:textColor="?attr/colorSecondary"
+                    android:text="@{viewModel.apodLiveData.title}"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="@dimen/text_size_18sp"
                     app:fontFamily="@font/roboto_bold"
                     app:layout_constraintEnd_toEndOf="@id/sdvImage"
@@ -80,13 +98,15 @@
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/sdvImage"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginTop="@dimen/dimen_10dp"
                     android:adjustViewBounds="true"
+                    app:layout_constraintDimensionRatio="5:3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/atvTitle"
-                    app:roundedCornerRadius="@dimen/dimen_12dp" />
+                    app:roundedCornerRadius="@dimen/dimen_12dp"
+                    app:setImage="@{viewModel.apodLiveData.url}" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -94,7 +114,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_12dp"
-                    android:textColor="?attr/colorSecondary"
+                    android:text="@{viewModel.apodLiveData.explanation}"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="@dimen/text_size_16sp"
                     app:fontFamily="@font/roboto_medium"
                     app:layout_constraintEnd_toEndOf="@id/sdvImage"
@@ -107,11 +128,17 @@
                     android:id="@+id/aivFavourite"
                     android:layout_width="@dimen/dimen_40dp"
                     android:layout_height="@dimen/dimen_40dp"
-                    android:layout_marginTop="@dimen/dimen_10dp"
+                    android:onClick="@{view->viewModel.addRemoveFavourites()}"
                     android:padding="@dimen/dimen_5dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_heart_hollow" />
+                    app:setImage="@{viewModel.apodLiveData.favourite}" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/groupHide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="atvSelectDate,atvLabelViewMore,aivFavourite"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -121,24 +148,25 @@
             android:id="@+id/atvRetry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_16dp"
-            android:textColor="?attr/colorSecondaryVariant"
-            android:textSize="@dimen/text_size_14sp"
-            app:fontFamily="@font/roboto_bold"
-            android:visibility="gone"
-            android:gravity="center"
             android:layout_gravity="center"
+            android:layout_margin="@dimen/dimen_16dp"
+            android:gravity="center"
+            android:onClick="@{view->viewModel.onRetryClicked()}"
+            android:text="@string/txt_no_internet_retry"
+            android:textColor="?attr/colorPrimaryVariant"
+            android:textSize="@dimen/text_size_16sp"
+            android:visibility="@{viewModel.showRetry ? View.VISIBLE : View.GONE}"
+            app:fontFamily="@font/roboto_medium"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:text="@string/txt_no_internet_retry" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <include
             android:id="@+id/progress"
             layout="@layout/layout_progressbar"
-            android:visibility="gone" />
+            android:visibility="@{viewModel.loadingLiveData ? View.VISIBLE : View.GONE}" />
 
     </FrameLayout>
 
