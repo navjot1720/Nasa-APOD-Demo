@@ -6,12 +6,18 @@ package com.gs.nasaapod.data
  */
 object AppConstants {
     const val KEY_DATE = "DATE"
+    const val KEY_VIDEO_URL = "VIDEO_URL"
 
 }
 
 enum class TabNames(val value: String){
     ASTRONOMY("Astronomy"),
     FAVOURITES("Favourites")
+}
+
+enum class MediaType(val value: String){
+    VIDEO("video"),
+    IMAGE("image")
 }
 
 object ApiEndPoints {

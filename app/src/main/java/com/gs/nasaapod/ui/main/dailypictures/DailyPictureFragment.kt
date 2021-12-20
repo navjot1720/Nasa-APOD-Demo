@@ -1,13 +1,17 @@
 package com.gs.nasaapod.ui.main.dailypictures
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.gs.nasaapod.R
 import com.gs.nasaapod.base.BaseFragment
+import com.gs.nasaapod.data.AppConstants
 import com.gs.nasaapod.databinding.FragmentDailyPicturesBinding
+import com.gs.nasaapod.ui.details.PictureDetailActivity
 import com.gs.nasaapod.ui.main.MainViewModel
+import com.gs.nasaapod.ui.video.PlayVideoActivity
 import java.util.*
 
 
@@ -41,6 +45,13 @@ class DailyPictureFragment : BaseFragment<FragmentDailyPicturesBinding, MainView
 
         viewModel?.selectDateLiveData?.observe(viewLifecycleOwner, {
             selectDate()
+        })
+
+
+        viewModel?.videoClickLiveData?.observe(viewLifecycleOwner, { url ->
+            val intent = Intent(requireContext(), PlayVideoActivity::class.java)
+            intent.putExtra(AppConstants.KEY_VIDEO_URL, url)
+            startActivity(intent)
         })
 
     }

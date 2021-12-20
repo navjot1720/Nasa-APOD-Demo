@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.gs.nasaapod.base.BaseViewModel
 import com.gs.nasaapod.data.ApiStatusCodes
+import com.gs.nasaapod.data.MediaType
 import com.gs.nasaapod.data.database.entities.FavouritePicturesEntity
 import com.gs.nasaapod.data.restapi.ResultWrapper
 import com.gs.nasaapod.utils.SingleLiveEvent
@@ -26,6 +27,9 @@ class MainViewModel : BaseViewModel() {
 
     // LiveData to show datePicker to select the date
     val selectDateLiveData by lazy { SingleLiveEvent<Any?>() }
+
+    // LiveData to handle click on video thumbnail
+    val videoClickLiveData by lazy { SingleLiveEvent<String?>() }
 
 
     /**
@@ -164,16 +168,25 @@ class MainViewModel : BaseViewModel() {
     }
 
 
+    /**
+     *  onClick handle on select date
+     */
     fun onDateSelect() {
         selectDateLiveData.value = Any()
     }
 
 
+    /**
+     *  onClick handle on retry
+     */
     fun onRetryClicked() {
         getPicturesForToday()
     }
 
 
+    /**
+     *  onClick handle on add/remove favourites
+     */
     fun addRemoveFavourites() {
         apodLiveData.value?.let {
             if (it.isFavourite) {
@@ -187,5 +200,16 @@ class MainViewModel : BaseViewModel() {
         }
     }
 
+
+    /**
+     *  onClick handle on video
+     */
+    fun onImageClicked(){
+        apodLiveData.value?.let {
+            if (it.media_type.equals(MediaType.VIDEO.value, true)){
+                videoClickLiveData.value = it.url
+            }
+        }
+    }
 
 }

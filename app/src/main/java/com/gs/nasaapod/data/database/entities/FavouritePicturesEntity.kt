@@ -18,6 +18,7 @@ class FavouritePicturesEntity {
     var explanation: String? = null
     var url: String? = null
     var hdurl: String? = null
+    var thumbnail_url: String? = null
     var media_type: String? = null
     var copyright: String? = null
     var service_version: String? = null

@@ -9,7 +9,7 @@ import com.gs.nasaapod.data.database.entities.FavouritePicturesEntity
 
 
 @Database(
-    entities = [FavouritePicturesEntity::class], version = 2, exportSchema = false
+    entities = [FavouritePicturesEntity::class], version = 3, exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
 

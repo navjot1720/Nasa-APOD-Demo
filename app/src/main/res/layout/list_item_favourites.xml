@@ -91,7 +91,7 @@
             android:layout_marginTop="@dimen/dimen_16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:setImage="@{model.url}"
+            app:setImage="@{model}"
             app:placeholderImage="@drawable/shape_image_placeholder"
             app:roundedCornerRadius="@dimen/dimen_6dp" />
 

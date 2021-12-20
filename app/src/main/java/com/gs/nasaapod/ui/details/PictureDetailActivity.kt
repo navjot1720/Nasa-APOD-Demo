@@ -1,5 +1,6 @@
 package com.gs.nasaapod.ui.details
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.gs.nasaapod.R
@@ -7,6 +8,7 @@ import com.gs.nasaapod.base.BaseActivity
 import com.gs.nasaapod.data.AppConstants
 import com.gs.nasaapod.databinding.FragmentDailyPicturesBinding
 import com.gs.nasaapod.ui.main.MainViewModel
+import com.gs.nasaapod.ui.video.PlayVideoActivity
 import com.gs.nasaapod.utils.gone
 
 
@@ -34,6 +36,11 @@ class PictureDetailActivity : BaseActivity<FragmentDailyPicturesBinding, MainVie
     }
 
     override fun setObservers() {
+        viewModel?.videoClickLiveData?.observe(this, { url ->
+            val intent = Intent(this, PlayVideoActivity::class.java)
+            intent.putExtra(AppConstants.KEY_VIDEO_URL, url)
+            startActivity(intent)
+        })
     }
 
 }

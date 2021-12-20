@@ -28,6 +28,7 @@ class MainRepository : BaseRepository() {
         return callApi(ApiRequestCodes.RC_PICTURE_FOR_TODAY) {
             val params = HashMap<String, String>()
             params["api_key"] = getAPIKey()
+            params["thumbs"] = "true"
 
             DataManager.getAstronomyPictures(params)
         }
@@ -42,6 +43,7 @@ class MainRepository : BaseRepository() {
             val params = HashMap<String, String>()
             params["api_key"] = getAPIKey()
             params["date"] = date
+            params["thumbs"] = "true"
 
             DataManager.getAstronomyPictures(params)
         }
