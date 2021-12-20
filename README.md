@@ -16,7 +16,7 @@ Features:
 The application uses Architecture based on MVVM and Repository patterns. Implemented
 Architecture principles follow Google recommended [Guide to app architecture](https://developer.android.com/jetpack/docs/guide).
 
-![Guide to app architecture](guide-to-app-architecture.png "Guide to app architecture")
+![Guide to app architecture](screenshots/architecture_mvvm.jpeg "Guide to app architecture")
 
 This application is written entirely in Kotlin.
 
@@ -32,6 +32,17 @@ Frescro is used for image loading.
 
 Lottie animationnis used for graphical animation on splash screen.
 
+
+# Screenshots
+
+<p align="center">
+<img src="screenshots/splash.jpeg" width="128"/>
+ </p>
+  
+!![Splash](screenshots/splash.jpeg "Splash")
+![Favourites](screenshots/favourites.png "Favourites")
+![Main-light](screenshots/main_light.png "Main-light")
+![Main-dark](screenshots/main_dark.png "Main-dark")
 
 
 # APIs used to fetch data: 
