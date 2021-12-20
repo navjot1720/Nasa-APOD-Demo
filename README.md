@@ -35,6 +35,7 @@ Lottie animationnis used for graphical animation on splash screen.
 
 # Screenshots
 
+<img src="screenshots/splash.jpeg" width="128"/>
 !![Splash](screenshots/splash.jpeg "Splash")
 ![Favourites](screenshots/favourites.png "Favourites")
 ![Main-light](screenshots/main_light.png "Main-light")
