@@ -26,11 +26,27 @@
     </style>
 
     <!--    Style for DatePickerDialog-->
-    <style name="DatePickerTheme" parent="Theme.MaterialComponents.DayNight.Dialog">
-        <item name="colorAccent">@color/colorPrimary</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="android:colorControlActivated">@color/colorPrimary</item>
-    </style>
+    <style name="DatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+    <item name="colorAccent">@color/colorPrimary</item>
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimary</item>
+    <!--selected Item color-->
+    <item name="colorControlActivated">@color/colorPrimaryVariant</item>
+    <!-- Highlight item color-->
+    <item name="colorControlHighlight">@color/colorPrimary</item>
+    <!--Calender Background color -->
+    <item name="android:windowBackground">@color/colorSecondary</item>
+    <!-- Ok Cancel Color-->
+    <item name="android:textColor">@color/colorPrimary</item>
+    <!-- Week TextColor-->
+    <item name="android:textColorSecondary">@color/colorPrimary</item>
+    <!-- Calender Number color arrow color (< >) -->
+    <item name="android:textColorPrimary">@color/colorPrimary</item>
+    <!--day , month-->
+    <item name="android:textColorPrimaryInverse">@color/colorSecondary</item>
+    <!-- year-->
+    <item name="android:textColorSecondaryInverse">@color/colorSecondary</item>
+
+</style>
 
 </resources>
