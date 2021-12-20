@@ -10,5 +10,7 @@ Dark mode support
 Support for different screen sizes & orientations
 
 APIs used: https://api.nasa.gov/
+
 In this application, Nasa's open source api is used to display astronomy pictures and videos.
+
 Detailed documentation for APIs click here: https://api.nasa.gov/#browseAPI
